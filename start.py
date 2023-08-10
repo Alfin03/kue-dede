@@ -157,12 +157,12 @@ if x==1:
 
     values_df.columns = forecast_df.columns[:12]
     dates = pd.to_datetime(forecast_dates[:14])
-    dates
+    
     values_df['Tanggal'] = dates
     st.title("Berikut ini adalah hasil peramalan")
     if y==10:
         values_df[["Tanggal","KUE SUS", "BIKANGDOANG", "DONUT COKLAT", "PUDDING", "RESOLES", "ROTI KEJU", "ROTI AYAM", "BLUDER"
-          , "SIRAM COKLAT", "APANG PARANGGI"]]
+          , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:10]
     if y==7:
         values_df[["Tanggal","KUE SUS", "BIKANGDOANG", "DONUT COKLAT", "PUDDING", "RESOLES", "ROTI KEJU", "ROTI AYAM", "BLUDER"
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:7]
