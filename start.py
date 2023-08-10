@@ -157,7 +157,7 @@ if x==1:
 
     values_df.columns = forecast_df.columns[:12]
     dates = pd.to_datetime(forecast_dates[:14])
-
+    dates
     values_df['Tanggal'] = dates
     st.title("Berikut ini adalah hasil peramalan")
     if y==10:
