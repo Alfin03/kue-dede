@@ -120,21 +120,26 @@ if x==1:
     train_X = train_X.reshape((train_X.shape[0], time_steps, len(variables)))
     val_X = val_X.reshape((val_X.shape[0], time_steps, len(variables)))
 
+    # Reshape the input data
+    train_X_reshaped = train_X.reshape(train_X.shape[0], -1)
+    val_X_reshaped = val_X.reshape(val_X.shape[0], -1)
+
+    # Create the model
     model = tf.keras.models.Sequential()
-    model.add(tf.keras.layers.LSTM(64, activation='relu', input_shape=(time_steps, len(variables))))
+    model.add(tf.keras.layers.Dense(64, activation='relu', input_shape=(time_steps * len(variables),)))
     model.add(tf.keras.layers.Dense(len(variables)))
     model.compile(loss='mse', optimizer='adam')
 
-    history = model.fit(train_X, train_y, epochs=80, batch_size=64,validation_data=(val_X, val_y), verbose=1)
+    # Train the model
+    history = model.fit(train_X_reshaped, train_y, epochs=80, batch_size=64, validation_data=(val_X_reshaped, val_y), verbose=1)
+
 
     look_back = model.input_shape[1]
 
-    current_input = val_X[-look_back:, :, :]
+    current_input = val_X_reshaped
     print(current_input.shape)
 
     forcasts= model.predict(current_input)
-
-    current_input = np.concatenate([current_input[1:, :, :], forcasts[np.newaxis, :, :]], axis=0)
 
     dates = data.index[-len(val_y):]
     forecast_dates = pd.date_range(start=dates[-1], periods=len(forcasts)+1, freq='D')[1:]
@@ -151,9 +156,11 @@ if x==1:
     values_df=values_df.iloc[:,0:10+2]
 
     values_df.columns = forecast_df.columns[:12]
+    dates = pd.to_datetime(forecast_dates[:14])
 
     values_df.index=forecast_dates
     st.title("Berikut ini adalah hasil peramalan")
+    values_df['Tanggal'] = dates
     if y==10:
         values_df[["KUE SUS", "BIKANGDOANG", "DONUT COKLAT", "PUDDING", "RESOLES", "ROTI KEJU", "ROTI AYAM", "BLUDER"
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:10]
@@ -162,7 +169,7 @@ if x==1:
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:7]
     if y==14:
         values_df[["KUE SUS", "BIKANGDOANG", "DONUT COKLAT", "PUDDING", "RESOLES", "ROTI KEJU", "ROTI AYAM", "BLUDER"
-            , "SIRAM COKLAT", "APANG PARANGGI"]]
+            , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:14]
 
 
     #import matplotlib.pyplot as plt
