@@ -126,7 +126,10 @@ if x==1:
 
     # Create the model
     model = tf.keras.models.Sequential()
-    model.add(tf.keras.layers.Dense(64, activation='relu', input_shape=(time_steps * len(variables),)))
+    model.add(tf.keras.layers.Dense(168, activation='relu', input_shape=(time_steps * len(variables),)))
+
+    model.add(tf.keras.layers.Dense(64, activation='relu')) 
+
     model.add(tf.keras.layers.Dense(len(variables)))
     model.compile(loss='mse', optimizer='adam')
 
