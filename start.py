@@ -3,16 +3,6 @@ import pandas as pd
 import numpy
 import openpyxl
 
-st.markdown(
-    """
-    <style>
-    .main {
-        max-width: 1200px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 y=0
 x=0
 time = 0
