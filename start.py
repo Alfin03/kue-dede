@@ -174,22 +174,28 @@ if x==1:
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:14]
     
     if st.button("Simpan Hasil Peramalan dalam Excel"):
-        # Membuat file Excel dari DataFrame
+    # Membuat file Excel dari DataFrame
         excel_writer = pd.ExcelWriter("hasil_peramalan.xlsx", engine='xlsxwriter')
         values_df.to_excel(excel_writer, sheet_name='Hasil Peramalan', index=False)
         excel_writer.save()
     
-        # Membaca file Excel sebagai bytes
+    # Membaca file Excel sebagai bytes
         with open("hasil_peramalan.xlsx", "rb") as f:
             file_data = f.read()
-
-        # Tampilkan tautan unduh
-        st.download_button(
-            label="Unduh Hasil Peramalan",
-            data=file_data,
-            file_name="hasil_peramalan.xlsx",
-            key="unduh-excel"
-        )
+    
+    # Menampilkan tombol unduh
+        download_button = st.empty()
+        download_button.button("Unduh Hasil Peramalan")
+    
+    # Jika tombol unduh ditekan, unduh file
+        if download_button.button_clicked("Unduh Hasil Peramalan"):
+            download_button.markdown("File sedang diunduh...")
+            st.download_button(
+                label="hasil_peramalan.xlsx",
+                data=file_data,
+                file_name="hasil_peramalan.xlsx",
+                key="unduh-excel"
+            )
     #import matplotlib.pyplot as plt
     #fig_size = (9, 3)  
     #for a, variable in enumerate(variables):
