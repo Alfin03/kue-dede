@@ -162,6 +162,7 @@ if x==1:
     
     values_df['Tanggal'] = dates
     st.title("Berikut ini adalah hasil peramalan")
+    st.write('<h1 style="color: blue;">Teks Berwarna</h1>', unsafe_allow_html=True)
     if y==10:
         values_df[["Tanggal","KUE SUS", "BIKANGDOANG", "DONUT COKLAT", "PUDDING", "RESOLES", "ROTI KEJU", "ROTI AYAM", "BLUDER"
           , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:10]
@@ -173,12 +174,7 @@ if x==1:
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:14]
     
     
-    st.download_button(
-       "Press to Download",
-       csv,
-       "file.csv",
-       "text/csv",
-       key='download-csv'
+
 )
 
     # streamlit_app.py
