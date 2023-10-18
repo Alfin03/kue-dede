@@ -174,7 +174,13 @@ if x==1:
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:14]
     
     
-    
+    st.download_button(
+       "Press to Download",
+       csv,
+       "file.csv",
+       "text/csv",
+       key='download-csv'
+)
 
     # streamlit_app.py
 
