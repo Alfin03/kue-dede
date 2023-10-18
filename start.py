@@ -173,7 +173,6 @@ if x==1:
         values_df[["Tanggal","KUE SUS", "BIKANGDOANG", "DONUT COKLAT", "PUDDING", "RESOLES", "ROTI KEJU", "ROTI AYAM", "BLUDER"
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:14]
 
-    st.write(values_df)
 
     #import matplotlib.pyplot as plt
     #fig_size = (9, 3)  
