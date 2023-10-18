@@ -3,7 +3,7 @@ import pandas as pd
 import numpy
 import openpyxl
 
-
+st.set_page_config(layout="wide")
 y=0
 x=0
 time = 0
