@@ -172,7 +172,12 @@ if x==1:
     if y==14:
         values_df[["Tanggal","KUE SUS", "BIKANGDOANG", "DONUT COKLAT", "PUDDING", "RESOLES", "ROTI KEJU", "ROTI AYAM", "BLUDER"
             , "SIRAM COKLAT", "APANG PARANGGI"]].iloc[:14]
-
+    
+    if st.button("Simpan Hasil Peramalan dalam Excel"):
+    # Membuat file Excel dari DataFrame
+    excel_writer = pd.ExcelWriter("hasil_peramalan.xlsx", engine='xlsxwriter')
+    values_df.to_excel(excel_writer, sheet_name='Hasil Peramalan', index=False)
+    excel_writer.save()
 
     #import matplotlib.pyplot as plt
     #fig_size = (9, 3)  
